@@ -4,6 +4,16 @@ from sqlite3 import Error
 from reportlab.pdfgen import canvas
 from playsound import playsound
 from ./constants import *
+import os
+
+if not os.path.exists("media"):
+    os.mkdir("media") 
+
+if not os.path.exists("database"):
+    os.mkdir("database") 
+
+if not os.path.exists("pdfs"):
+    os.mkdir("pdfs") 
 
 def exportPdf(fileName, connectionObject, student_count, teacher_count):
     """
