@@ -1,3 +1,5 @@
 setup.py
 lib-att
 .vscode
+*.pdf
+*.db
