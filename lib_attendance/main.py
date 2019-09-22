@@ -10,7 +10,9 @@ check_entry_data = """ SELECT * FROM LIBRARY WHERE (sapid,in_date,is_in)=(?,?,?)
 insert_data = """ INSERT INTO LIBRARY ( sapid, in_date, entrytime, is_in, is_teacher) VALUES ( ?,?,?,?,? );"""
 retrieve_all_data = """SELECT * FROM LIBRARY"""
 count_insertion = """SELECT * FROM LIBRARY WHERE is_teacher=?;"""
-
+path_to_database = "database/"
+path_to_media = "media/"
+path_to_pdfs = "pdfs/"
 
 
 def exportPdf(fileName, connectionObject, student_count, teacher_count):
@@ -50,7 +52,7 @@ def validate_sap_id(sap_id):
         return sap_id, 0
     else:
         print("Error")
-        playsound('media/Try_again.mp3')
+        playsound(path_to_media + 'Try_again.mp3')
         return None, -1
 
 
@@ -59,7 +61,7 @@ def create_table_connection():
     Create Table and establish connection
     """
     str_date = datetime.now().strftime("%b-%Y")
-    file_name = "library-" + str_date + ".db"
+    file_name = path_to_database + "library-" + str_date + ".db"
     conn = sqlite3.connect(file_name)
     create_table = """ CREATE TABLE IF NOT EXISTS LIBRARY (
                                         id integer PRIMARY KEY,
@@ -106,15 +108,12 @@ def pdf_generation(str_date, conn):
     """
     Trigger exportPdf function and add count of students and teachers to pdf
     """
-    file_name = "library-" + str_date + ".pdf"
+    file_name = path_to_pdfs + "library-" + str_date + ".pdf"
     p = conn.execute(retrieve_all_data)
     total_count = len([row for row in p])
     count = conn.execute(count_insertion, (1,))
     teacher_count = len([row for row in count])
     student_count = total_count - teacher_count
-    # print(file_name)
-    # print(student_count)
-    # print(teacher_count)
     p = conn.execute(retrieve_all_data)
     exportPdf(file_name, p, student_count, teacher_count)
 
