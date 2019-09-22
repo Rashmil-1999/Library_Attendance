@@ -1,6 +1,6 @@
-Library_Attendance.py
+**/lib_attendance/__pycache__
 setup.py
 lib-att
 .vscode
-*.pdf
-*.db
+**/lib_attendance/../*.pdf
+**/lib_attendance/../*.db

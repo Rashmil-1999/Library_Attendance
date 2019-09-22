@@ -1,5 +1,15 @@
 # All the queries
 
+create_table = """ CREATE TABLE IF NOT EXISTS LIBRARY (
+                                        id integer PRIMARY KEY,
+                                        sapid text NOT NULL,
+                                        in_date text NOT NULL,
+                                        entrytime text NOT NULL,
+                                        exittime text,
+                                        is_in integer,
+                                        is_teacher integer
+                                    ); """
+
 update_data = """ UPDATE LIBRARY SET exittime=?, is_in=? WHERE (sapid,is_in)=(?,?);"""
 
 check_entry_data = """ SELECT * FROM LIBRARY WHERE (sapid,in_date,is_in)=(?,?,?); """

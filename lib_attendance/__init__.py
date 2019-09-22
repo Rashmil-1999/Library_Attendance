@@ -1,1 +1,1 @@
-name = "lib-attendance"
+name = "lib_attendance"
