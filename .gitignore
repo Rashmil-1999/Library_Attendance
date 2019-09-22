@@ -3,4 +3,4 @@ lib-att
 .vscode
 *.pdf
 *.db
-Library_Attendance.py
+.Library_Attendance.py
