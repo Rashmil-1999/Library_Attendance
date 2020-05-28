@@ -41,10 +41,10 @@ def pdf_generation(str_date, conn):
     Trigger exportPdf function and add count of students and teachers to pdf
     """
     file_name = constants.path_to_pdfs + "library-" + str_date + ".pdf"
-    p = conn.execute(query.retrieve_all_data)
+    p = conn.execute(retrieve_all_data)
     total_count = len([row for row in p])
-    count = conn.execute(query.count_insertion, (1,))
+    count = conn.execute(count_insertion, (1,))
     teacher_count = len([row for row in count])
     student_count = total_count - teacher_count
-    p = conn.execute(query.retrieve_all_data)
+    p = conn.execute(retrieve_all_data)
     exportPdf(file_name, p, student_count, teacher_count)
